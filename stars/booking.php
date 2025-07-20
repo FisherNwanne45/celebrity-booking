@@ -172,7 +172,7 @@ require_once 'header.php';
                         <h5>Fee Details</h5>
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between">
-                                <span>Celebrity Fee:</span>
+                                <span>Meet and Greet Fee:</span>
                                 <span class="fw-bold">$<?= number_format($celebrity['fee'], 2) ?></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
@@ -194,7 +194,7 @@ require_once 'header.php';
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="paymentMethod" id="None" checked>
                                     <label class="form-check-label" for="None">
-                                        I'll decide payment method later
+                                        No meet and greet
                                     </label>
                                 </div>
                             </li>
