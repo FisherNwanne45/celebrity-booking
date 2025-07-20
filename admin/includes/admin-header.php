@@ -87,6 +87,21 @@ requireAdminLogin();
         .stat-card.danger {
             background: linear-gradient(to right, #ff416c, #ff4b2b);
         }
+
+        .stat-card.info {
+            background: linear-gradient(to right, #17a2b8, #63e0e8);
+            /* Teal/Cyan tones */
+        }
+
+        .stat-card.secondary {
+            background: linear-gradient(to right, #6c757d, #adb5bd);
+            /* Gray tones */
+        }
+
+        .stat-card.light {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            /* Very light neutral tones */
+        }
         </style>
     </head>
 
@@ -152,8 +167,22 @@ requireAdminLogin();
                                     <i class="bi bi-person-circle"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                                    <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="profile.php">
+                                            <i class="bi bi-person-circle me-2"></i> Profile
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" href="settings.php">
+                                            <i class="bi bi-gear me-2"></i> Settings
+                                        </a>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="smtp-settings.php">
+                                            <i class="bi bi-envelope me-2"></i> SMTP Settings
+                                        </a>
+                                    </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

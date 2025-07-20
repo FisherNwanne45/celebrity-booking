@@ -1,6 +1,5 @@
 <?php
 $pageTitle = "Manage Celebrities";
-require_once 'includes/admin-header.php';
 require_once '../includes/functions.php';
 require_once '../includes/upload.php';
 
@@ -12,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'name' => $_POST['name'],
             'category' => $_POST['category'],
             'profile' => $_POST['profile'],
+            'description' => $_POST['description'],
             'fee' => $_POST['fee'],
             'picture' => $picture ? $picture : ''
         ];
@@ -21,8 +21,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error'] = "Error adding celebrity";
         }
     }
+    // Handle delete celebrity - NEW BLOCK
+    if (isset($_POST['delete_celebrity'])) {
+        $id = (int)$_POST['id']; // Get ID from POST data
+
+        // Prepare and execute the DELETE statement for the 'celebrities' table
+        $stmt = $pdo->prepare("DELETE FROM celebrities WHERE id = ?");
+        if ($stmt->execute([$id])) {
+            $_SESSION['success'] = "Celebrity deleted successfully";
+        } else {
+            $_SESSION['error'] = "Error deleting celebrity.";
+            // You might want to log the actual PDO error for debugging
+            // error_log("PDO Error: " . implode(" ", $stmt->errorInfo()));
+        }
+    }
+    header("Location: celebrities.php"); // Redirect after any POST operation
+    exit;
 }
 
+require_once 'includes/admin-header.php';
 // Get all celebrities
 $celebrities = getCelebrities($pdo);
 ?>
@@ -64,6 +81,14 @@ $celebrities = getCelebrities($pdo);
                     </tr>
                 </thead>
                 <tbody>
+                    <style>
+                    .btn.custom {
+                        font-size: 0.85rem;
+                        /* smaller font size */
+                        padding: 0rem 0rem;
+                        /* adjust padding if needed */
+                    }
+                    </style>
                     <?php foreach ($celebrities as $celebrity): ?>
                     <tr>
                         <td>
@@ -86,10 +111,14 @@ $celebrities = getCelebrities($pdo);
                                     class="btn btn-sm btn-outline-primary">
                                     <i class="bi bi-pencil"></i> Edit
                                 </a>
-                                <a href="celebrities-delete.php?id=<?= $celebrity['id'] ?>"
-                                    class="btn btn-sm btn-outline-danger">
-                                    <i class="bi bi-trash"></i> Delete
-                                </a>
+                                <!-- Delete Button - Changed to a POST form -->
+                                <form method="POST" class="btn btn-sm btn-outline-danger"
+                                    onsubmit="return confirm('Are you sure you want to delete this celebrity?');">
+                                    <input type="hidden" name="id" value="<?= $celebrity['id'] ?>">
+                                    <button type="submit" name="delete_celebrity" class="btn custom">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>

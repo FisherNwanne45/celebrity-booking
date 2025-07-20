@@ -113,3 +113,109 @@ function updateSiteSettings($pdo, $settings)
     }
     return true;
 }
+
+// Get SMTP settings
+function getSmtpSettings($pdo)
+{
+    $stmt = $pdo->query("SELECT * FROM smtp_settings ORDER BY id DESC LIMIT 1");
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+// Update SMTP settings
+function updateSmtpSettings($pdo, $settings)
+{
+    // Check if settings exist
+    $current = getSmtpSettings($pdo);
+
+    if ($current) {
+        // Update existing
+        $sql = "UPDATE smtp_settings SET 
+                host = :host,
+                port = :port,
+                username = :username,
+                password = :password,
+                encryption = :encryption,
+                from_email = :from_email,
+                from_name = :from_name
+            WHERE id = :id";
+    } else {
+        // Insert new
+        $sql = "INSERT INTO smtp_settings 
+                (host, port, username, password, encryption, from_email, from_name)
+            VALUES 
+                (:host, :port, :username, :password, :encryption, :from_email, :from_name)";
+    }
+
+    $stmt = $pdo->prepare($sql);
+
+    // Bind parameters
+    $params = [
+        ':host' => $settings['host'],
+        ':port' => $settings['port'],
+        ':username' => $settings['username'],
+        ':password' => $settings['password'],
+        ':encryption' => $settings['encryption'],
+        ':from_email' => $settings['from_email'],
+        ':from_name' => $settings['from_name']
+    ];
+
+    if ($current) {
+        $params[':id'] = $current['id'];
+    }
+
+    return $stmt->execute($params);
+}
+
+// Create contact inquiry
+function createContactInquiry($pdo, $data)
+{
+    $sql = "INSERT INTO contact_inquiries 
+            (name, email, phone, event_date, details, created_at)
+            VALUES (?, ?, ?, ?, ?, NOW())";
+
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([
+        $data['name'],
+        $data['email'],
+        $data['phone'],
+        $data['event_date'],
+        $data['details']
+    ]);
+}
+
+// Get site settings for contact page
+function getContactSettings($pdo)
+{
+    $settings = getAllSiteSettings($pdo);
+    return [
+        'site_name' => $settings['site_name'] ?? 'Celebrity Booking',
+        'contact_email' => $settings['email'] ?? 'contact@example.com',
+        'phone_number' => $settings['phone_number'] ?? '',
+        'address' => $settings['address'] ?? ''
+    ];
+}
+
+// Get contact inquiries
+function getContactInquiries($pdo, $limit = null)
+{
+    $sql = "SELECT * FROM contact_inquiries ORDER BY created_at DESC";
+    if ($limit) {
+        $sql .= " LIMIT " . (int)$limit;
+    }
+    $stmt = $pdo->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Get total contact inquiries
+function getTotalContactInquiries($pdo)
+{
+    $stmt = $pdo->query("SELECT COUNT(*) FROM contact_inquiries");
+    return $stmt->fetchColumn();
+}
+
+// Get recent unread contact inquiries
+function getUnreadContactInquiries($pdo)
+{
+    $stmt = $pdo->query("SELECT COUNT(*) FROM contact_inquiries WHERE is_read = 0");
+    return $stmt->fetchColumn();
+}

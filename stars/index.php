@@ -24,7 +24,7 @@ $celebrities2 = getCelebrities($pdo);
                 <div class="swiper-slide">
                     <!-- Promo Sticker -->
                     <div class="promo-sticker bg-danger text-white fw-bold shadow-sm">
-                        You can book <?= htmlspecialchars($celebrity['name']) ?> today!
+                        You can book <?= htmlspecialchars($celebrity['name']) ?> today! 👍
                     </div>
                     <div class="row align-items-center g-4 w-100">
 

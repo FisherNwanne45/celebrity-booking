@@ -17,6 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error'] = "Error adding payment method";
         }
     }
+    // Handle delete payment method - NEW BLOCK
+    if (isset($_POST['delete_payment_method'])) {
+        $id = (int)$_POST['id']; // Get ID from POST data
+
+        // Prepare and execute the DELETE statement for the 'payment_methods' table
+        $stmt = $pdo->prepare("DELETE FROM payment_methods WHERE id = ?");
+        if ($stmt->execute([$id])) {
+            $_SESSION['success'] = "Payment method deleted successfully";
+        } else {
+            $_SESSION['error'] = "Error deleting payment method.";
+            // You might want to log the actual PDO error for debugging
+            // error_log("PDO Error: " . implode(" ", $stmt->errorInfo()));
+        }
+    }
+    header("Location: payment-methods.php"); // Redirect after any POST operation
+    exit;
 }
 
 // Get all payment methods
@@ -35,13 +51,13 @@ $paymentMethods = getPaymentMethods($pdo);
 </div>
 
 <?php if (isset($_SESSION['success'])): ?>
-    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-    <?php unset($_SESSION['success']); ?>
+<div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+<?php unset($_SESSION['success']); ?>
 <?php endif; ?>
 
 <?php if (isset($_SESSION['error'])): ?>
-    <div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
-    <?php unset($_SESSION['error']); ?>
+<div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
+<?php unset($_SESSION['error']); ?>
 <?php endif; ?>
 
 <!-- Payment Methods Table -->
@@ -59,25 +75,37 @@ $paymentMethods = getPaymentMethods($pdo);
                 </thead>
                 <tbody>
                     <?php foreach ($paymentMethods as $method): ?>
-                        <tr>
-                            <td><?= $method['name'] ?></td>
-                            <td><?= nl2br($method['details']) ?></td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="payments-edit.php?id=<?= $method['id'] ?>"
-                                        class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-pencil"></i> Edit
-                                    </a>
-                                    <a href="payments-delete.php?id=<?= $method['id'] ?>"
-                                        class="btn btn-sm btn-outline-danger">
+                    <tr>
+                        <td><?= $method['name'] ?></td>
+                        <td><?= nl2br($method['details']) ?></td>
+                        <td>
+                            <span class="badge bg-success">Active</span>
+                        </td>
+                        <style>
+                        .btn.custom {
+                            font-size: 0.85rem;
+                            /* smaller font size */
+                            padding: 0rem 0rem;
+                            /* adjust padding if needed */
+                        }
+                        </style>
+                        <td>
+                            <div class="btn-group">
+                                <a href="payments-edit.php?id=<?= $method['id'] ?>"
+                                    class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
+                                <!-- Delete Button - Changed to a POST form -->
+                                <form method="POST" class="btn btn-sm btn-outline-danger"
+                                    onsubmit="return confirm('Are you sure you want to delete this payment method?');">
+                                    <input type="hidden" name="id" value="<?= $method['id'] ?>">
+                                    <button type="submit" name="delete_payment_method" class="btn  custom">
                                         <i class="bi bi-trash"></i> Delete
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
