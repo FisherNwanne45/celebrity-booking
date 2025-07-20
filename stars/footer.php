@@ -48,7 +48,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3 mb-4" data-aos="fade-left" data-aos-delay="300">
+            <div class="col-md-3 mb-4">
                 <h5 class="mb-3 text-white fw-bold">Newsletter</h5>
                 <p class="text-light-grey">Subscribe for updates on new celebrity additions and exclusive
                     offers.</p>

@@ -36,9 +36,6 @@ $celebrities = getCelebrities($pdo);
                 <a href="index.php" class="btn btn-primary btn-lg">
                     <i class="bi bi-house me-2"></i>Return Home
                 </a>
-                <a href="#" class="btn btn-outline-primary btn-lg">
-                    <i class="bi bi-calendar me-2"></i>View My Bookings
-                </a>
             </div>
         </div>
     </div>
