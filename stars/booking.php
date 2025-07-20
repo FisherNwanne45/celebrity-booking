@@ -46,7 +46,7 @@ require_once 'header.php';
                 </div>
                 <div class="card-body">
                     <?php if (isset($error)): ?>
-                        <div class="alert alert-danger"><?= $error ?></div>
+                    <div class="alert alert-danger"><?= $error ?></div>
                     <?php endif; ?>
 
                     <form method="POST">
@@ -74,8 +74,8 @@ require_once 'header.php';
 
                         <div class="mb-3">
                             <label for="details" class="form-label">Event Details</label>
-                            <textarea class="form-control" id="details" name="details" rows="4" required
-                                placeholder="Tell us about your event..."></textarea>
+                            <textarea class="form-control" id="details" name="details" rows="6" required
+                                placeholder="Tell us about your event including your budget, location, nearest airport and any relevant information..."></textarea>
                         </div>
 
                         <div class="d-grid">
@@ -97,13 +97,13 @@ require_once 'header.php';
                     <div class="d-flex align-items-center mb-4">
                         <div class="flex-shrink-0">
                             <?php if ($celebrity['picture']): ?>
-                                <img src="<?= $celebrity['picture'] ?>" alt="<?= $celebrity['name'] ?>" class="rounded"
-                                    width="80">
+                            <img src="<?= $celebrity['picture'] ?>" alt="<?= $celebrity['name'] ?>" class="rounded"
+                                width="80">
                             <?php else: ?>
-                                <div class="bg-secondary rounded d-flex align-items-center justify-content-center"
-                                    style="width: 80px; height: 80px;">
-                                    <i class="bi bi-person text-light" style="font-size: 2rem;"></i>
-                                </div>
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-center"
+                                style="width: 80px; height: 80px;">
+                                <i class="bi bi-person text-light" style="font-size: 2rem;"></i>
+                            </div>
                             <?php endif; ?>
                         </div>
                         <div class="flex-grow-1 ms-3">
@@ -121,11 +121,11 @@ require_once 'header.php';
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Service Fee:</span>
-                                <span>$<?= number_format($celebrity['fee'] * 0.15) ?></span>
+                                <span>$<?= number_format($celebrity['fee'] * 0.10) ?></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Estimated Total:</span>
-                                <span class="fw-bold">$<?= number_format($celebrity['fee'] * 1.15) ?></span>
+                                <span class="fw-bold">$<?= number_format($celebrity['fee'] * 1.10) ?></span>
                             </li>
                         </ul>
                     </div>
@@ -135,16 +135,24 @@ require_once 'header.php';
                         <p>After booking, we'll contact you with payment instructions using one of these
                             methods:</p>
                         <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="None">
+                                    <label class="form-check-label" for="method<?= $method['id'] ?>">
+                                        I don't wish to Meet and Greet <?= $celebrity['name'] ?> yet
+                                    </label>
+                                </div>
+                            </li>
                             <?php foreach ($paymentMethods as $method): ?>
-                                <li class="list-group-item">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="paymentMethod"
-                                            id="method<?= $method['id'] ?>">
-                                        <label class="form-check-label" for="method<?= $method['id'] ?>">
-                                            <?= $method['name'] ?>
-                                        </label>
-                                    </div>
-                                </li>
+                            <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod"
+                                        id="method<?= $method['id'] ?>">
+                                    <label class="form-check-label" for="method<?= $method['id'] ?>">
+                                        <?= $method['name'] ?>
+                                    </label>
+                                </div>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

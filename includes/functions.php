@@ -85,3 +85,31 @@ function updateBookingStatus($pdo, $id, $status)
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([$status, $id]);
 }
+
+
+// Get site setting
+function getSiteSetting($pdo, $key)
+{
+    $stmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_key = ?");
+    $stmt->execute([$key]);
+    $result = $stmt->fetch();
+    return $result ? $result['setting_value'] : '';
+}
+
+// Get all site settings
+// Get all site settings
+function getAllSiteSettings($pdo)
+{
+    $stmt = $pdo->query("SELECT setting_key, setting_value FROM site_settings");
+    return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+}
+
+// Update site settings
+function updateSiteSettings($pdo, $settings)
+{
+    foreach ($settings as $key => $value) {
+        $stmt = $pdo->prepare("UPDATE site_settings SET setting_value = ? WHERE setting_key = ?");
+        $stmt->execute([$value, $key]);
+    }
+    return true;
+}

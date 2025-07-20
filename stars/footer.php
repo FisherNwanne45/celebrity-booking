@@ -2,15 +2,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4" data-aos="fade-right">
-                <h5 class="mb-3 text-white fw-bold">StarBookings</h5>
+                <h5 class="mb-3 text-white fw-bold"><i class="bi bi-mic-fill me-2"></i> <?= $siteName ?></h5>
                 <p class="text-light-grey">Connecting you with the world's top celebrities for unforgettable
                     events and
                     experiences.</p>
-                <div class="d-flex gap-3 social-icons mt-3">
-                    <a href="#" class="text-white"><i class="bi bi-facebook fs-4"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-twitter fs-4"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-linkedin fs-4"></i></a>
+                <div class="d-flex gap-3 mb-3">
+                    <?php if ($facebook): ?>
+                    <a href="<?= $facebook ?>" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+                    <?php endif; ?>
+                    <?php if ($twitter): ?>
+                    <a href="<?= $twitter ?>" class="text-white fs-4"><i class="bi bi-twitter"></i></a>
+                    <?php endif; ?>
+                    <?php if ($instagram): ?>
+                    <a href="<?= $instagram ?>" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+                    <?php endif; ?>
+                    <?php if ($linkedin): ?>
+                    <a href="<?= $linkedin ?>" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-2 mb-4" data-aos="fade-up" data-aos-delay="100">
@@ -29,7 +37,12 @@
             <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <h5 class="mb-3 text-white fw-bold">Contact Us</h5>
                 <ul class="list-unstyled text-light-grey">
-                    <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@starbookings.com</li>
+                    <?php if ($email): ?>
+                    <li class="mb-2"><i class="bi bi-envelope me-2"></i><?= $email ?></li><?php endif; ?>
+                    <?php if ($phone): ?><li class="mb-2"><i class="bi bi-telephone me-2"></i><?= $phone ?></li>
+                    <?php endif; ?>
+                    <?php if ($address): ?><li class="mb-2"><i class="bi bi-geo-alt me-2"></i><?= $address ?></li>
+                    <?php endif; ?>
                     <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><a href="contact.php"
                             class="text-light-grey text-decoration-none">Contact Us</a>
                     </li>
@@ -47,7 +60,7 @@
         </div>
         <hr class="my-4 border-light-grey">
         <div class="text-center text-light-grey">
-            <p>&copy; <?= date('Y') ?> StarBookings. All rights reserved.</p>
+            <p>&copy; <?= date('Y') ?> <?= $siteName ?>. All rights reserved.</p>
         </div>
     </div>
     <button id="backToTopBtn" class="btn btn-primary back-to-top shadow">

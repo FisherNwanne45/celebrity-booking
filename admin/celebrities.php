@@ -129,8 +129,9 @@ $celebrities = getCelebrities($pdo);
 
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Konwn for</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <label for="description" class="form-label">Known for</label>
+                        <input type="text" class="form-control" placeholder="Short description about the celeb"
+                            id="description" name="description" required>
                     </div>
                     <div class="mb-3">
                         <label for="profile" class="form-label">Profile</label>

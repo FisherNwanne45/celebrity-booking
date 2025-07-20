@@ -35,7 +35,7 @@ require_once 'header.php';
                 </div>
                 <div class="card-body">
                     <?php if (isset($error)): ?>
-                        <div class="alert alert-danger"><?= $error ?></div>
+                    <div class="alert alert-danger"><?= $error ?></div>
                     <?php endif; ?>
 
                     <form method="POST">
@@ -80,63 +80,117 @@ require_once 'header.php';
         <div class="col-md-5">
             <div class="card shadow sticky-top" style="top: 90px;">
                 <div class="card-header bg-info text-white">
-                    <h4 class="mb-0">Booking Summary</h4>
+                    <h4 class="mb-0">Contact Information</h4>
                 </div>
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-4">
                         <div class="flex-shrink-0">
-                            <?php if ($celebrity['picture']): ?>
-                                <img src="<?= $celebrity['picture'] ?>" alt="<?= $celebrity['name'] ?>" class="rounded"
-                                    width="80">
-                            <?php else: ?>
-                                <div class="bg-secondary rounded d-flex align-items-center justify-content-center"
-                                    style="width: 80px; height: 80px;">
-                                    <i class="bi bi-person text-light" style="font-size: 2rem;"></i>
-                                </div>
-                            <?php endif; ?>
+
+
+
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-center"
+                                style="width: 80px; height: 80px;">
+                                <i class="bi bi-mic-fill me-2 text-light" style="font-size: 2rem;"></i>
+                            </div>
+
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h5><?= $celebrity['name'] ?></h5>
-                            <span class="badge bg-primary"><?= $celebrity['category'] ?></span>
+                            <h5><?= $siteName ?></h5>
+                            <span class="badge bg-primary"><i class="bi bi-envelope me-2"></i><?= $email ?>
+                                </li>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="mb-3">Frequently Asked Questions</h5>
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseOne" aria-expanded="false"
+                                        aria-controls="faqCollapseOne">
+                                        How do I book a celebrity?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Simply click the “Book Now” button on the celebrity’s profile and complete the
+                                        form. Our team will contact you shortly.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseTwo" aria-expanded="false"
+                                        aria-controls="faqCollapseTwo">
+                                        Can I request a celebrity not listed?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes! Use the "Special Request" form and we’ll reach out to them on your behalf.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseThree" aria-expanded="false"
+                                        aria-controls="faqCollapseThree">
+                                        What does the booking fee cover?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The fee covers the celebrity’s time, appearance, and any specific requirements
+                                        discussed in the agreement.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseFour" aria-expanded="false"
+                                        aria-controls="faqCollapseFour">
+                                        Is international travel included?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseFour" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Most celebrities are available for international travel, but additional travel
+                                        and accommodation fees may apply.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseFive" aria-expanded="false"
+                                        aria-controls="faqCollapseFive">
+                                        How far in advance should I book?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseFive" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingFive" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        We recommend booking at least 2–4 weeks in advance to secure availability and
+                                        make arrangements.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mb-4">
-                        <h5>Fee Details</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Celebrity Fee:</span>
-                                <span class="fw-bold">$<?= number_format($celebrity['fee']) ?></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Service Fee:</span>
-                                <span>$<?= number_format($celebrity['fee'] * 0.15) ?></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Estimated Total:</span>
-                                <span class="fw-bold">$<?= number_format($celebrity['fee'] * 1.15) ?></span>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="mb-4">
-                        <h5>Payment Options</h5>
-                        <p>After booking, we'll contact you with payment instructions using one of these
-                            methods:</p>
-                        <ul class="list-group">
-                            <?php foreach ($paymentMethods as $method): ?>
-                                <li class="list-group-item">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="paymentMethod"
-                                            id="method<?= $method['id'] ?>">
-                                        <label class="form-check-label" for="method<?= $method['id'] ?>">
-                                            <?= $method['name'] ?>
-                                        </label>
-                                    </div>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

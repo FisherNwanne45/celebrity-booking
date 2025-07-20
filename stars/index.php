@@ -21,67 +21,72 @@ $celebrities2 = getCelebrities($pdo);
                 $celebrities2 = array_slice($celebrities2, 0, 3);
                 foreach ($celebrities2 as $celebrity): ?>
 
-                    <div class="swiper-slide">
-                        <!-- Promo Sticker -->
-                        <div class="promo-sticker bg-danger text-white fw-bold shadow-sm">
-                            You can book <?= htmlspecialchars($celebrity['name']) ?> today!
-                        </div>
-                        <div class="row align-items-center g-4 w-100">
+                <div class="swiper-slide">
+                    <!-- Promo Sticker -->
+                    <div class="promo-sticker bg-danger text-white fw-bold shadow-sm">
+                        You can book <?= htmlspecialchars($celebrity['name']) ?> today!
+                    </div>
+                    <div class="row align-items-center g-4 w-100">
 
-                            <div class="col-lg-6 text-center" data-aos="fade-right">
-                                <?php if ($celebrity['picture']): ?>
-                                    <img src="<?= htmlspecialchars($celebrity['picture']) ?>"
-                                        alt="<?= htmlspecialchars($celebrity['name']) ?>"
-                                        class="img-fluid rounded-lg shadow-lg celebrity-slide-img">
-                                <?php else: ?>
-                                    <div
-                                        class="d-flex align-items-center justify-content-center bg-light text-muted rounded-lg shadow-lg celebrity-slide-img placeholder-img">
-                                        <i class="bi bi-person-circle" style="font-size: 6rem;"></i>
-                                    </div>
-                                <?php endif; ?>
+                        <div class="col-lg-6 text-center" data-aos="fade-right">
+                            <?php if ($celebrity['picture']): ?>
+                            <img src="<?= htmlspecialchars($celebrity['picture']) ?>"
+                                alt="<?= htmlspecialchars($celebrity['name']) ?>"
+                                class="img-fluid rounded-lg shadow-lg celebrity-slide-img">
+                            <?php else: ?>
+                            <div
+                                class="d-flex align-items-center justify-content-center bg-light text-muted rounded-lg shadow-lg celebrity-slide-img placeholder-img">
+                                <i class="bi bi-person-circle" style="font-size: 6rem;"></i>
                             </div>
+                            <?php endif; ?>
+                        </div>
 
-                            <div class="col-lg-6" data-aos="fade-left">
-                                <div class="celebrity-text-card p-4 p-lg-5 shadow-sm bg-white rounded-4 h-100">
-                                    <h6 class="text-success-money mb-2 fs-3">Featured Star
-                                    </h6>
-                                    <h3 class="fw-bold display-5 text-dark-blue">
-                                        <?= htmlspecialchars($celebrity['name']) ?></h3>
-                                    <?php
+                        <div class="col-lg-6" data-aos="fade-left">
+                            <div class="celebrity-text-card p-4 p-lg-5 shadow-sm bg-white rounded-4 h-100">
+                                <h6 class="text-success-money mb-2 fs-3">Featured Star
+                                </h6>
+                                <h3 class="fw-bold display-5 text-dark-blue">
+                                    <?= htmlspecialchars($celebrity['name']) ?></h3>
+                                <?php
                                     $category = htmlspecialchars($celebrity['category']);
                                     $badgeClass = $categoryColors[$category] ?? 'bg-danger'; // fallback if not found
                                     ?>
-                                    <span class="badge <?= $badgeClass ?> mb-3 p-2 text-uppercase fw-semibold">
-                                        <?= $category ?>
-                                    </span>
+                                <span class="badge <?= $badgeClass ?> mb-3 p-2 text-uppercase fw-semibold">
+                                    <?= $category ?>
+                                </span>
 
-                                    <p class="text-muted lead">
-                                        <?= htmlspecialchars(substr($celebrity['description'], 0, 100)) ?>
-                                    </p>
-                                    <!--<h4 class="text-success-money mb-4 fs-3">$<?= number_format($celebrity['fee']) ?>
+                                <p class="text-muted lead">
+                                    <?= htmlspecialchars(substr($celebrity['description'], 0, 100)) ?>
+                                </p>
+                                <!--<h4 class="text-success-money mb-4 fs-3">$<?= number_format($celebrity['fee']) ?>
                                     </h4>-->
-                                    <div class="d-flex flex-column flex-sm-row gap-3">
-                                        <a href="celebrities.php?id=<?= $celebrity['id'] ?>"
-                                            class="btn btn-outline-primary-custom btn-lg">
-                                            View Profile
-                                        </a>
-                                        <a href="booking.php?id=<?= $celebrity['id'] ?>"
-                                            class="btn btn-primary-custom btn-lg">
-                                            <i class="bi bi-calendar-plus me-1"></i> Book Now
-                                        </a>
-                                    </div>
+                                <div class="d-flex flex-column flex-sm-row gap-3">
+                                    <a href="celebrities.php?id=<?= $celebrity['id'] ?>"
+                                        class="btn btn-outline-primary-custom btn-lg">
+                                        View Profile
+                                    </a>
+                                    <a href="booking.php?id=<?= $celebrity['id'] ?>"
+                                        class="btn btn-primary-custom btn-lg">
+                                        <i class="bi bi-calendar-plus me-1"></i> Book Now
+                                    </a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
+                </div>
                 <?php endforeach; ?>
+
             </div>
 
             <div class="swiper-button-prev celebrity-swiper-prev"></div>
             <div class="swiper-button-next celebrity-swiper-next"></div>
             <div class="swiper-pagination"></div>
         </div>
+        <h4 class="text-dark-blue text-center mt-4 mb-0">
+            Book your favorite celebrities
+        </h4>
+
     </div>
 </section>
 <?php
@@ -107,18 +112,18 @@ $latestHeadlines = array_slice($headlines, 0, 10);
     <div class="container">
         <div class="ticker d-flex align-items-center">
             <?php if (!empty($latestHeadlines)): ?>
-                <?php
+            <?php
                 // Function to render a single set of headlines
                 function renderHeadlines($headlinesArray)
                 {
                     foreach ($headlinesArray as $news): ?>
-                        <a href="<?= $news['link'] ?>" class="text-white text-decoration-none ticker-item" target="_blank">
-                            <i class="bi bi-megaphone-fill me-2"></i><?= htmlspecialchars($news['title']) ?>
-                        </a>
-                <?php endforeach;
+            <a href="<?= $news['link'] ?>" class="text-white text-decoration-none ticker-item" target="_blank">
+                <i class="bi bi-megaphone-fill me-2"></i><?= htmlspecialchars($news['title']) ?>
+            </a>
+            <?php endforeach;
                 }
                 ?>
-                <?php
+            <?php
                 // Render the headlines multiple times to ensure continuous loop
                 // The more content you have, the more times you might need to repeat
                 // (or adjust the animation percentage). 3-4 times is usually safe.
@@ -127,22 +132,22 @@ $latestHeadlines = array_slice($headlines, 0, 10);
                 }
                 ?>
             <?php else: ?>
-                <span>No news available right now.</span>
+            <span>No news available right now.</span>
             <?php endif; ?>
         </div>
     </div>
 </div>
 
 <style>
-    .ticker-wrapper {
-        white-space: nowrap;
-        overflow: hidden;
-        position: relative;
-    }
+.ticker-wrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
 
-    .ticker {
-        display: inline-flex;
-        /*
+.ticker {
+    display: inline-flex;
+    /*
          * Key change: The animation percentage.
          * We need to calculate how much to move based on the actual content width.
          * Since we repeat the content N times (here, 3 times), we want to scroll
@@ -154,47 +159,47 @@ $latestHeadlines = array_slice($headlines, 0, 10);
          * The duration should be relative to the amount of content.
          * A longer duration is needed for more content to keep the speed consistent.
          */
-        animation: ticker-scroll 10s linear infinite;
-        /* Start with 20s, adjust as needed */
+    animation: ticker-scroll 10s linear infinite;
+    /* Start with 20s, adjust as needed */
+}
+
+/* Pause animation on hover */
+.ticker-wrapper:hover .ticker {
+    animation-play-state: paused;
+}
+
+.ticker-item {
+    flex-shrink: 0;
+    /* Adjusted padding-right to account for Bootstrap's gap utility */
+    padding-right: 3rem;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+/* Keyframe animation for continuous scroll */
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0%);
     }
 
-    /* Pause animation on hover */
-    .ticker-wrapper:hover .ticker {
-        animation-play-state: paused;
-    }
-
-    .ticker-item {
-        flex-shrink: 0;
-        /* Adjusted padding-right to account for Bootstrap's gap utility */
-        padding-right: 3rem;
-        white-space: nowrap;
-        font-weight: 500;
-    }
-
-    /* Keyframe animation for continuous scroll */
-    @keyframes ticker-scroll {
-        0% {
-            transform: translateX(0%);
-        }
-
-        /*
+    /*
          * If you repeat the content 'N' times, the target for 100% should be
          * `translateX(-100% / N)`.
          * Since we are repeating 3 times (Original + 2 Duplicates), N=3.
          * So, -100% / 3 = -33.333% approximately.
          */
-        100% {
-            transform: translateX(-33.333%);
-            /* Move by 1/3 of the total width */
-        }
+    100% {
+        transform: translateX(-33.333%);
+        /* Move by 1/3 of the total width */
     }
+}
 
-    /* Adjust `gap` on the `.ticker` if using Bootstrap's `gap-5` for proper calculation */
-    /* Add this if you suspect the gap is not being factored into the width correctly */
-    .ticker.d-flex {
-        gap: 3rem;
-        /* Ensure this matches your gap-5 or adjust padding-right if gap is handled differently */
-    }
+/* Adjust `gap` on the `.ticker` if using Bootstrap's `gap-5` for proper calculation */
+/* Add this if you suspect the gap is not being factored into the width correctly */
+.ticker.d-flex {
+    gap: 3rem;
+    /* Ensure this matches your gap-5 or adjust padding-right if gap is handled differently */
+}
 </style>
 
 <!--<section class="py-5 bg-white" data-aos="fade-in">
@@ -250,68 +255,68 @@ $latestHeadlines = array_slice($headlines, 0, 10);
 
         <div class="row" id="celebrityCards">
             <?php foreach ($celebrities as $celebrity): ?>
-                <div class="col-lg-4 col-md-6 mb-4 celebrity-card"
-                    data-category="<?= htmlspecialchars($celebrity['category']) ?>" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100 shadow-sm border-0 animated-card">
-                        <?php if ($celebrity['picture']): ?>
-                            <img src="<?= htmlspecialchars($celebrity['picture']) ?>" class="card-img-top"
-                                alt="<?= htmlspecialchars($celebrity['name']) ?>" style="height: 300px; object-fit: cover;">
-                        <?php else: ?>
-                            <div class="bg-secondary d-flex align-items-center justify-content-center placeholder-img"
-                                style="height: 300px;">
-                                <i class="bi bi-person-circle text-white" style="font-size: 5rem;"></i>
-                            </div>
-                        <?php endif; ?>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold text-dark-blue">
-                                <?= htmlspecialchars($celebrity['name']) ?></h5>
-                            <span
-                                class="badge bg-secondary-gradient mb-2 align-self-start text-uppercase fw-semibold"><?= htmlspecialchars($celebrity['category']) ?></span>
-                            <!--<h6 class="text-success-money fs-5">$<?= number_format($celebrity['fee']) ?></h6>-->
-                            <p class="card-text text-muted mt-2 flex-grow-1">
-                                <?= htmlspecialchars(substr($celebrity['description'], 0, 100)) ?></p>
-                        </div>
-                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
-                            <a href="celebrities.php?id=<?= $celebrity['id'] ?>"
-                                class="btn btn-sm btn-outline-primary-custom">
-                                View Profile
-                            </a>
-                            <a href="booking.php?id=<?= $celebrity['id'] ?>" class="btn btn-sm btn-primary-custom">
-                                <i class="bi bi-calendar-plus me-1"></i>Book Now
-                            </a>
-                        </div>
+            <div class="col-lg-4 col-md-6 mb-4 celebrity-card"
+                data-category="<?= htmlspecialchars($celebrity['category']) ?>" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100 shadow-sm border-0 animated-card">
+                    <?php if ($celebrity['picture']): ?>
+                    <img src="<?= htmlspecialchars($celebrity['picture']) ?>" class="card-img-top"
+                        alt="<?= htmlspecialchars($celebrity['name']) ?>" style="height: 300px; object-fit: cover;">
+                    <?php else: ?>
+                    <div class="bg-secondary d-flex align-items-center justify-content-center placeholder-img"
+                        style="height: 300px;">
+                        <i class="bi bi-person-circle text-white" style="font-size: 5rem;"></i>
+                    </div>
+                    <?php endif; ?>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-dark-blue">
+                            <?= htmlspecialchars($celebrity['name']) ?></h5>
+                        <span
+                            class="badge bg-secondary-gradient mb-2 align-self-start text-uppercase fw-semibold"><?= htmlspecialchars($celebrity['category']) ?></span>
+                        <!--<h6 class="text-success-money fs-5">$<?= number_format($celebrity['fee']) ?></h6>-->
+                        <p class="card-text text-muted mt-2 flex-grow-1">
+                            <?= htmlspecialchars(substr($celebrity['description'], 0, 100)) ?></p>
+                    </div>
+                    <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                        <a href="celebrities.php?id=<?= $celebrity['id'] ?>"
+                            class="btn btn-sm btn-outline-primary-custom">
+                            View Profile
+                        </a>
+                        <a href="booking.php?id=<?= $celebrity['id'] ?>" class="btn btn-sm btn-primary-custom">
+                            <i class="bi bi-calendar-plus me-1"></i>Book Now
+                        </a>
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const buttons = document.querySelectorAll("[data-filter]");
-        const cards = document.querySelectorAll(".celebrity-card");
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-filter]");
+    const cards = document.querySelectorAll(".celebrity-card");
 
-        buttons.forEach(button => {
-            button.addEventListener("click", () => {
-                buttons.forEach(btn => btn.classList.remove("active"));
-                button.classList.add("active");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            buttons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
 
-                const filter = button.getAttribute("data-filter");
+            const filter = button.getAttribute("data-filter");
 
-                cards.forEach(card => {
-                    const category = card.getAttribute("data-category");
-                    if (filter === "all" || category === filter) {
-                        card.style.display = "block";
-                        // Re-initialize AOS for filtered cards
-                        AOS.refreshHard();
-                    } else {
-                        card.style.display = "none";
-                    }
-                });
+            cards.forEach(card => {
+                const category = card.getAttribute("data-category");
+                if (filter === "all" || category === filter) {
+                    card.style.display = "block";
+                    // Re-initialize AOS for filtered cards
+                    AOS.refreshHard();
+                } else {
+                    card.style.display = "none";
+                }
             });
         });
     });
+});
 </script>
 
 <section id="how-it-works" class="py-5 bg-white">

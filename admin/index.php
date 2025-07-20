@@ -33,7 +33,7 @@ $pendingBookings = array_filter($bookings, function ($booking) {
         <div class="stat-card success">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5>Total Bookings</h5>
+                    <h6>Total Bookings</h6>
                     <h2 class="mb-0"><?= count($bookings) ?></h2>
                 </div>
                 <div>
@@ -46,7 +46,7 @@ $pendingBookings = array_filter($bookings, function ($booking) {
         <div class="stat-card warning">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5>Pending Bookings</h5>
+                    <h6>Pending Bookings</h6>
                     <h2 class="mb-0"><?= count($pendingBookings) ?></h2>
                 </div>
                 <div>
@@ -59,7 +59,7 @@ $pendingBookings = array_filter($bookings, function ($booking) {
         <div class="stat-card danger">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5>Payment Methods</h5>
+                    <h6>Payment Methods</h6>
                     <h2 class="mb-0"><?= count($paymentMethods) ?></h2>
                 </div>
                 <div>
@@ -90,24 +90,24 @@ $pendingBookings = array_filter($bookings, function ($booking) {
                 </thead>
                 <tbody>
                     <?php foreach (array_slice($bookings, 0, 5) as $booking): ?>
-                        <tr>
-                            <td><?= $booking['id'] ?></td>
-                            <td><?= $booking['celebrity_name'] ?></td>
-                            <td><?= $booking['user_name'] ?></td>
-                            <td><?= date('M d, Y', strtotime($booking['event_date'])) ?></td>
-                            <td>
-                                <span class="badge bg-<?=
+                    <tr>
+                        <td><?= $booking['id'] ?></td>
+                        <td><?= $booking['celebrity_name'] ?></td>
+                        <td><?= $booking['user_name'] ?></td>
+                        <td><?= date('M d, Y', strtotime($booking['event_date'])) ?></td>
+                        <td>
+                            <span class="badge bg-<?=
                                                         $booking['status'] === 'confirmed' ? 'success' : ($booking['status'] === 'pending' ? 'warning' : 'danger')
                                                         ?>">
-                                    <?= ucfirst($booking['status']) ?>
-                                </span>
-                            </td>
-                            <td>
-                                <a href="bookings.php?action=view&id=<?= $booking['id'] ?>" class="btn btn-sm btn-primary">
-                                    <i class="bi bi-eye"></i> View
-                                </a>
-                            </td>
-                        </tr>
+                                <?= ucfirst($booking['status']) ?>
+                            </span>
+                        </td>
+                        <td>
+                            <a href="bookings.php?action=view&id=<?= $booking['id'] ?>" class="btn btn-sm btn-primary">
+                                <i class="bi bi-eye"></i> View
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -138,30 +138,30 @@ $pendingBookings = array_filter($bookings, function ($booking) {
                 </thead>
                 <tbody>
                     <?php foreach (array_slice($celebrities, 0, 5) as $celebrity): ?>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <?php if ($celebrity['picture']): ?>
-                                        <img src="../stars/<?= $celebrity['picture'] ?>" alt="<?= $celebrity['name'] ?>"
-                                            class="rounded-circle me-3" width="40" height="40">
-                                    <?php else: ?>
-                                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-3"
-                                            style="width: 40px; height: 40px;">
-                                            <i class="bi bi-person text-light"></i>
-                                        </div>
-                                    <?php endif; ?>
-                                    <span><?= $celebrity['name'] ?></span>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <?php if ($celebrity['picture']): ?>
+                                <img src="../stars/<?= $celebrity['picture'] ?>" alt="<?= $celebrity['name'] ?>"
+                                    class="rounded-circle me-3" width="40" height="40">
+                                <?php else: ?>
+                                <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 40px; height: 40px;">
+                                    <i class="bi bi-person text-light"></i>
                                 </div>
-                            </td>
-                            <td><?= $celebrity['category'] ?></td>
-                            <td>$<?= number_format($celebrity['fee']) ?></td>
-                            <td>
-                                <a href="celebrities.php?action=edit&id=<?= $celebrity['id'] ?>"
-                                    class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-pencil"></i> Edit
-                                </a>
-                            </td>
-                        </tr>
+                                <?php endif; ?>
+                                <span><?= $celebrity['name'] ?></span>
+                            </div>
+                        </td>
+                        <td><?= $celebrity['category'] ?></td>
+                        <td>$<?= number_format($celebrity['fee']) ?></td>
+                        <td>
+                            <a href="celebrities.php?action=edit&id=<?= $celebrity['id'] ?>"
+                                class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
