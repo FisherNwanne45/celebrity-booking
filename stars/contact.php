@@ -141,7 +141,7 @@ require_once 'header.php';
             </div>
         </div>
 
-        <div class="col-md-5">
+        <div id="faq" class="col-md-5">
             <div class="card shadow sticky-top" style="top: 90px;">
                 <div class="card-header bg-info text-white">
                     <h4 class="mb-0">Contact Information</h4>

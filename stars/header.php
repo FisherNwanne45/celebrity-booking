@@ -54,7 +54,7 @@ $linkedin = getSiteSetting($pdo, 'linkedin');
                             <a class="nav-link" href="index.php#how-it-works">How It Works</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php#faqAccordion">FAQ</a>
+                            <a class="nav-link" href="contact.php#faq">FAQ</a>
                         </li>
 
                     </ul>
