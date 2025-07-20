@@ -1,0 +1,6 @@
+Options -Indexes
+
+<FilesMatch "\.(env|htaccess|htpasswd|ini|log|sh|sql)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
