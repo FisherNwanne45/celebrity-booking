@@ -49,7 +49,7 @@ function sendBookingConfirmation($pdo, $booking, $celebrity)
             <h1>Booking Confirmation</h1>
             <p>Dear {$booking['user_name']},</p>
             <p>Thank you for booking {$celebrity['name']} for your event on {$booking['event_date']}.</p>
-            <p>We will contact you shortly to confirm the details and provide payment instructions.</p>
+            <p>We will contact you shortly to confirm the details and provide further instructions.</p>
             <p>Booking Details:</p>
             <ul>
                 <li>Celebrity: {$celebrity['name']}</li>

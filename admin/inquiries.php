@@ -35,13 +35,13 @@ $inquiries = getContactInquiries($pdo);
 </div>
 
 <?php if (isset($_SESSION['success'])): ?>
-<div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-<?php unset($_SESSION['success']); ?>
+    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+    <?php unset($_SESSION['success']); ?>
 <?php endif; ?>
 
 <?php if (isset($_SESSION['error'])): ?>
-<div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
-<?php unset($_SESSION['error']); ?>
+    <div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
+    <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
 
 <div class="card shadow-sm">
@@ -50,7 +50,7 @@ $inquiries = getContactInquiries($pdo);
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -62,35 +62,35 @@ $inquiries = getContactInquiries($pdo);
                 </thead>
                 <tbody>
                     <?php foreach ($inquiries as $inquiry): ?>
-                    <tr class="<?= $inquiry['is_read'] ? '' : 'table-warning' ?>">
-                        <td><?= $inquiry['id'] ?></td>
-                        <td><?= htmlspecialchars($inquiry['name']) ?></td>
-                        <td><a
-                                href="mailto:<?= htmlspecialchars($inquiry['email']) ?>"><?= htmlspecialchars($inquiry['email']) ?></a>
-                        </td>
-                        <td><?= htmlspecialchars($inquiry['phone']) ?></td>
-                        <td><?= $inquiry['event_date'] ? date('M d, Y', strtotime($inquiry['event_date'])) : 'N/A' ?>
-                        </td>
-                        <td><?= date('M d, Y', strtotime($inquiry['created_at'])) ?></td>
-                        <td>
-                            <span class="badge bg-<?= $inquiry['is_read'] ? 'success' : 'warning' ?>">
-                                <?= $inquiry['is_read'] ? 'Read' : 'Unread' ?>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="inquiries-view.php?action=view&id=<?= $inquiry['id'] ?>"
-                                    class="btn btn-sm btn-primary">
-                                    <i class="bi bi-eye"></i> View
-                                </a>
-                                <a href="inquiries.php?action=delete&id=<?= $inquiry['id'] ?>"
-                                    class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this inquiry?')">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr class="<?= $inquiry['is_read'] ? '' : 'table-warning' ?>">
+
+                            <td><?= htmlspecialchars($inquiry['name']) ?></td>
+                            <td><a
+                                    href="mailto:<?= htmlspecialchars($inquiry['email']) ?>"><?= htmlspecialchars($inquiry['email']) ?></a>
+                            </td>
+                            <td><?= htmlspecialchars($inquiry['phone']) ?></td>
+                            <td><?= $inquiry['event_date'] ? date('M d, Y', strtotime($inquiry['event_date'])) : 'N/A' ?>
+                            </td>
+                            <td><?= date('M d, Y', strtotime($inquiry['created_at'])) ?></td>
+                            <td>
+                                <span class="badge bg-<?= $inquiry['is_read'] ? 'success' : 'warning' ?>">
+                                    <?= $inquiry['is_read'] ? 'Read' : 'Unread' ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="inquiries-view.php?action=view&id=<?= $inquiry['id'] ?>"
+                                        class="btn btn-sm btn-primary">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="inquiries.php?action=delete&id=<?= $inquiry['id'] ?>"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this inquiry?')">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
