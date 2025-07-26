@@ -45,19 +45,43 @@ function sendBookingConfirmation($pdo, $booking, $celebrity)
         $mail->isHTML(true);
         $mail->Subject = 'Booking Confirmation';
 
+        $merchandiseHtml = "<li>Merchandise: None</li>";
+        if (!empty($booking['merchandise'])) {
+            $merchandiseItems = json_decode($booking['merchandise'], true);
+            if (!empty($merchandiseItems)) {
+                $merchList = [];
+                foreach ($merchandiseItems as $item => $quantity) {
+                    if ($quantity > 0) {
+                        $merchList[] = "$item: $quantity";
+                    }
+                }
+
+                if (!empty($merchList)) {
+                    $merchandiseHtml = "<li>Merchandise: 
+                <ul><li>" . implode('</li><li>', $merchList) . "</li></ul>
+              </li>";
+                }
+            }
+        }
+
         $mail->Body = "
-            <h1>Booking Confirmation</h1>
-            <p>Dear {$booking['user_name']},</p>
-            <p>Thank you for booking {$celebrity['name']} for your event on {$booking['event_date']}.</p>
-            <p>We will contact you shortly to confirm the details and provide further instructions.</p>
-            <p>Booking Details:</p>
-            <ul>
-                <li>Celebrity: {$celebrity['name']}</li>
-                <li>Event Date: " . date('F j, Y', strtotime($booking['event_date'])) . "</li>
-                <li>Your Message: {$booking['event_details']}</li>
-            </ul>
-            <p>Best regards,<br>{$smtpSettings['from_name']}</p>
-        ";
+    <h1>Booking Confirmation</h1>
+    <p>Dear {$booking['user_name']},</p>
+    <p>Thank you for booking {$celebrity['name']} for your event on {$booking['event_date']}.</p>
+    <p>We will contact you shortly to confirm the details and provide further instructions.</p>
+    
+    <p>Booking Details:</p>
+    <ul>
+        <li>Celebrity: {$celebrity['name']}</li>
+        <li>Event Date: " . date('F j, Y', strtotime($booking['event_date'])) . "</li>
+        <li>Your Message: {$booking['event_details']}</li>
+        <li>Fan Card Selection: {$booking['fan_card']}</li>
+        <li>Payment Method: {$booking['pay']}</li>
+        {$merchandiseHtml}
+    </ul>
+    
+    <p>Best regards,<br>{$smtpSettings['from_name']}</p>
+";
 
         $mail->send();
         return true;

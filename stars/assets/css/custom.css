@@ -6,7 +6,8 @@
   --primary-blue-end: #2575fc;
   --dark-section-bg: #212529; /* A darker, more visible background for menu/footer */
   --text-dark: #343a40;
-  --bg-red: #ca2800;
+  --bg-red: #720404;
+  --bg-scroll: #bd0a0a;
   --bg-white: #ffffff;
   --text-muted: #6c757d;
   --text-light-grey: #adb5bd;
@@ -50,6 +51,11 @@ a {
   text-decoration: none;
   transition: all 0.3s ease;
 }
+
+.bg-scroll {
+  background: var(--bg-scroll);
+}
+
 .back-to-top {
   position: fixed;
   bottom: 30px;
@@ -92,6 +98,75 @@ a {
     var(--primary-blue-end)
   );
   border-radius: 2px;
+}
+
+/* Keyframes for animations */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Styling for the logo elements */
+.golden-star-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Smaller size for the logo */
+  width: 40px; /* Approx. 2/3 of 60px wrapper */
+  height: 40px; /* Approx. 2/3 of 60px wrapper */
+  background: linear-gradient(45deg, #d4af37, #f9e076, #d4af37);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  animation: pulse 3s infinite, rotate 15s linear infinite;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Reduced shadow for smaller size */
+  z-index: 2;
+}
+
+.golden-ring-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Smaller size for the logo */
+  width: 54px; /* Approx. 8/9 of 60px wrapper */
+  height: 54px; /* Approx. 8/9 of 60px wrapper */
+  border: 2px solid #d4af37; /* Slightly thinner border */
+  border-radius: 50%;
+  animation: rotate 20s linear infinite reverse;
+}
+
+/* Custom styling for the logo wrapper to maintain fixed size */
+.logo-wrapper {
+  width: 60px;
+  height: 60px;
 }
 
 /* --- Navbar Enhancements --- */
@@ -359,7 +434,6 @@ a {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: #dc3545; /* Bootstrap red */
   padding: 8px 14px;
   font-size: 0.9rem;
   border-radius: 8px;
@@ -372,7 +446,7 @@ a {
 .celebrity-slider-section {
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: #ffffff; /* Ensure light background for this section */
+  background-color: #f5c7511a; /* Ensure light background for this section */
 }
 
 .celebritySwiper {
@@ -386,7 +460,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5c75136;
+  background: #f5c75173;
 
   /* .celebritySwiper .swiper-slide {
   display: flex;
@@ -643,6 +717,62 @@ footer .border-light-grey {
   }
   .cta-section p {
     font-size: 1rem;
+  }
+  /* Starry background effect for the navbar */
+  .navbar-stars {
+    background-color: #343a40; /* Dark background for stars to show */
+    position: relative;
+    overflow: hidden; /* Hide stars outside the navbar bounds */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-stars::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1; /* Ensure stars are behind navbar content but above background */
+    /* Create multiple box shadows for stars */
+    box-shadow:
+                /* Small stars (increased blur/spread for visibility) */ 10px
+        20px 1px 1px #fff,
+      30px 50px 1px 1px #fff, 60px 10px 1px 1px #fff, 80px 70px 1px 1px #fff,
+      100px 30px 1px 1px #fff, 120px 60px 1px 1px #fff, 140px 20px 1px 1px #fff,
+      160px 80px 1px 1px #fff, 180px 40px 1px 1px #fff, 200px 10px 1px 1px #fff,
+      220px 50px 1px 1px #fff, 240px 0px 1px 1px #fff, 260px 70px 1px 1px #fff,
+      280px 30px 1px 1px #fff, 300px 90px 1px 1px #fff, 320px 20px 1px 1px #fff,
+      340px 60px 1px 1px #fff, 360px 10px 1px 1px #fff, 380px 80px 1px 1px #fff,
+      400px 40px 1px 1px #fff, /* Medium stars */ 15px 45px 2px 1px #fff,
+      75px 25px 2px 1px #fff, 135px 85px 2px 1px #fff, 195px 5px 2px 1px #fff,
+      255px 65px 2px 1px #fff, 315px 15px 2px 1px #fff, 375px 55px 2px 1px #fff,
+      /* Large stars */ 40px 35px 3px 2px #fff, 110px 95px 3px 2px #fff,
+      230px 45px 3px 2px #fff, 350px 75px 3px 2px #fff;
+    animation: twinkle 10s infinite alternate; /* Subtle twinkle animation */
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Adjust navbar-brand text color for dark navbar */
+  .navbar-dark .navbar-brand .h4 {
+    color: #f8f9fa !important; /* Lighter color for text on dark background */
+  }
+  /* Adjust nav-link color for dark navbar */
+  .navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+  .navbar-dark .navbar-nav .nav-link.active {
+    color: #fff !important;
   }
   .navbar {
     padding-left: 0;

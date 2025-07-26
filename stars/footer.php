@@ -2,7 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4" data-aos="fade-right">
-                <h5 class="mb-3 text-white fw-bold"><i class="bi bi-mic-fill me-2"></i> <?= $siteName ?></h5>
+                <h5 class="mb-3 text-white fw-bold">
+                    <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="index.php">
+                        <!-- Logo Wrapper: This div controls the overall size and positioning of the animated logo -->
+                        <div class="logo-wrapper position-relative me-1 flex-shrink-0">
+                            <div class="golden-ring-logo"></div>
+                            <div class="golden-star-logo"></div>
+                        </div>
+                        <!-- Site Name -->
+                        <span class="h4 fw-bold mb-0"><?= $siteName ?></span>
+                    </a>
+                </h5>
                 <p class="text-light-grey">Connecting you with the world's top celebrities for unforgettable
                     events and
                     experiences.</p>

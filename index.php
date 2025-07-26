@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celebrity Experience | Loading</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
-        rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Celebrity Experience | Loading</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+            rel="stylesheet">
+        <style>
         * {
             margin: 0;
             padding: 0;
@@ -268,35 +268,35 @@
                 opacity: 0.2;
             }
         }
-    </style>
-</head>
+        </style>
+    </head>
 
-<body>
-    <div class="starry-sky" id="starry-sky"></div>
+    <body>
+        <div class="starry-sky" id="starry-sky"></div>
 
-    <div class="container">
-        <div class="logo">PREMIER ACCESS</div>
+        <div class="container">
+            <div class="logo">PREMIER ACCESS</div>
 
-        <div class="preloader">
-            <div class="golden-ring"></div>
-            <div class="golden-star"></div>
+            <div class="preloader">
+                <div class="golden-ring"></div>
+                <div class="golden-star"></div>
+            </div>
+
+            <div class="loading-text">Curating Star-Studded Experiences</div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="quote">
+                "The true celebrity is a person who is known for their well-knownness."
+                <span class="signature">- Daniel J. Boorstin</span>
+            </div>
         </div>
 
-        <div class="loading-text">Curating Star-Studded Experiences</div>
+        <div class="footer">Exclusive Celebrity Booking Platform</div>
 
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-        </div>
-
-        <div class="quote">
-            "The true celebrity is a person who is known for their well-knownness."
-            <span class="signature">- Daniel J. Boorstin</span>
-        </div>
-    </div>
-
-    <div class="footer">Exclusive Celebrity Booking Platform</div>
-
-    <script>
+        <script>
         // Create starry background
         const starrySky = document.getElementById('starry-sky');
         const starsCount = 150;
@@ -344,7 +344,7 @@
         setTimeout(() => {
             window.location.href = 'stars/';
         }, 10000);
-    </script>
-</body>
+        </script>
+    </body>
 
 </html>

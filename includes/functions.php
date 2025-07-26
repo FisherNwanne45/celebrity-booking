@@ -36,8 +36,8 @@ function getPaymentMethods($pdo)
 // Create a new booking
 function createBooking($pdo, $data)
 {
-    $sql = "INSERT INTO bookings (celebrity_id, user_name, user_email, user_phone, event_date, event_details) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO bookings (celebrity_id, user_name, user_email, user_phone, event_date, fan_card, pay, event_details, merchandise) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([
         $data['celebrity_id'],
@@ -45,7 +45,10 @@ function createBooking($pdo, $data)
         $data['user_email'],
         $data['user_phone'],
         $data['event_date'],
-        $data['event_details']
+        $data['fan_card'],
+        $data['pay'],
+        $data['event_details'],
+        $data['merchandise'] // Added merchandise column
     ]);
 }
 

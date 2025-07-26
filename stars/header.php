@@ -33,11 +33,18 @@ $linkedin = getSiteSetting($pdo, 'linkedin');
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-stars">
             <div class="container">
-                <a class="navbar-brand" href="index.php">
-                    <i class="bi bi-mic-fill me-2"></i><?= $siteName ?>
+                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="index.php">
+                    <!-- Logo Wrapper: This div controls the overall size and positioning of the animated logo -->
+                    <div class="logo-wrapper position-relative me-1 flex-shrink-0">
+                        <div class="golden-ring-logo"></div>
+                        <div class="golden-star-logo"></div>
+                    </div>
+                    <!-- Site Name -->
+                    <span class="h4 fw-bold mb-0"><?= $siteName ?></span>
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -23,7 +23,7 @@ $celebrities2 = getCelebrities($pdo);
 
                 <div class="swiper-slide">
                     <!-- Promo Sticker -->
-                    <div class="promo-sticker bg-danger text-white fw-bold shadow-sm">
+                    <div class="promo-sticker bg-scroll text-white fw-bold shadow-sm">
                         You can book <?= htmlspecialchars($celebrity['name']) ?> today! 👍
                     </div>
                     <div class="row align-items-center g-4 w-100">
@@ -49,7 +49,7 @@ $celebrities2 = getCelebrities($pdo);
                                     <?= htmlspecialchars($celebrity['name']) ?></h3>
                                 <?php
                                     $category = htmlspecialchars($celebrity['category']);
-                                    $badgeClass = $categoryColors[$category] ?? 'bg-danger'; // fallback if not found
+                                    $badgeClass = $categoryColors[$category] ?? 'bg-scroll'; // fallback if not found
                                     ?>
                                 <span class="badge <?= $badgeClass ?> mb-3 p-2 text-uppercase fw-semibold">
                                     <?= $category ?>
@@ -91,8 +91,7 @@ $celebrities2 = getCelebrities($pdo);
 </section>
 <?php
 // Fetch RSS feed from Google News
-// Using a more generic search term or specifically 'celebrity meet and greet' is fine,
-// just ensure the feed actually has enough items to test the ticker.
+
 $rss = simplexml_load_file('https://news.google.com/rss/search?q="celebrity+meet+and+greet"&hl=en-US&gl=US&ceid=US:en');
 $headlines = [];
 
@@ -108,7 +107,7 @@ if ($rss && isset($rss->channel->item)) {
 // Limit to the 10 latest headlines
 $latestHeadlines = array_slice($headlines, 0, 10);
 ?>
-<div class="ticker-wrapper bg-danger text-white py-2 overflow-hidden position-relative">
+<div class="ticker-wrapper bg-scroll text-white py-2 overflow-hidden position-relative">
     <div class="container">
         <div class="ticker d-flex align-items-center">
             <?php if (!empty($latestHeadlines)): ?>
