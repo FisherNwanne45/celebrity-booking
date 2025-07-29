@@ -33,7 +33,7 @@ require_once 'header.php';
                 </div>
                 <div class="position-relative d-inline-block">
                     <span class="position-absolute text-danger fw-semibold"
-                        style="top: -1.2rem; left: 0.2rem; font-size: 0.75rem;">
+                        style="top: -1.2rem; left: -0.7rem; font-size: 0.75rem;">
                         Meet and Greet Fee
                     </span>
                     <h2 class="text-primary fw-bold mb-0 ps-3" style="font-size: 2.2rem;">
@@ -81,11 +81,11 @@ require_once 'header.php';
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Availability:</span>
-                            <span class="text-success">Accepting Bookings</span>
+                            <span class="text-success">Accepting Fan Membership</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Minimum Booking:</span>
-                            <span>1 Day</span>
+                            <span>Private Booking:</span>
+                            <span>Minimun 1 Day</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Travel:</span>
@@ -97,7 +97,7 @@ require_once 'header.php';
 
             <div class="d-grid">
                 <a href="booking.php?id=<?= $celebrity['id'] ?>" class="btn btn-primary btn-lg">
-                    <i class="bi bi-calendar-plus me-2"></i>Book Now
+                    <i class="bi bi-calendar-plus me-2"></i>Join Fan Club
                 </a>
             </div>
         </div>
@@ -133,7 +133,7 @@ require_once 'header.php';
                             View Details
                         </a>
                         <a href="booking.php?id=<?= $sim['id'] ?>" class="btn btn-sm btn-primary">
-                            Book Now
+                            Join Fan Club
                         </a>
                     </div>
                 </div>

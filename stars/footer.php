@@ -64,7 +64,7 @@
                     offers.</p>
                 <div class="input-group">
                     <input type="email" class="form-control" placeholder="Your email">
-                    <button class="btn btn-primary-custom" type="button">Subscribe</button>
+                    <button class="btn btn-primary-custom" type="button">Join</button>
                 </div>
             </div>
         </div>

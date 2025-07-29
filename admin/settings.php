@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'phone_number' => $_POST['phone_number'],
         'address' => $_POST['address'],
         'email' => $_POST['email'],
+        'cap' => $_POST['cap'],
+        'shirt' => $_POST['shirt'],
         'facebook' => $_POST['facebook'],
         'twitter' => $_POST['twitter'],
         'instagram' => $_POST['instagram'],
@@ -72,6 +74,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="address" class="form-label">Address</label>
                     <input type="text" class="form-control" id="address" name="address"
                         value="<?= htmlspecialchars($settings['address']) ?>">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="cap" class="form-label">Face-Cap Cost</label>
+                    <input type="number" class="form-control" id="cap" name="cap"
+                        value="<?= htmlspecialchars($settings['cap']) ?>">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="shirt" class="form-label">T-shirt Cost</label>
+                    <input type="number" class="form-control" id="shirt" name="shirt"
+                        value="<?= htmlspecialchars($settings['shirt']) ?>">
                 </div>
             </div>
 

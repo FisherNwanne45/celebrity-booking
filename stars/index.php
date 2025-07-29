@@ -24,7 +24,7 @@ $celebrities2 = getCelebrities($pdo);
                 <div class="swiper-slide">
                     <!-- Promo Sticker -->
                     <div class="promo-sticker bg-scroll text-white fw-bold shadow-sm">
-                        You can book <?= htmlspecialchars($celebrity['name']) ?> today! 👍
+                        Join Official <?= htmlspecialchars($celebrity['name']) ?> Fan Club! 👍
                     </div>
                     <div class="row align-items-center g-4 w-100">
 
@@ -67,7 +67,7 @@ $celebrities2 = getCelebrities($pdo);
                                     </a>
                                     <a href="booking.php?id=<?= $celebrity['id'] ?>"
                                         class="btn btn-primary-custom btn-lg">
-                                        <i class="bi bi-calendar-plus me-1"></i> Book Now
+                                        <i class="bi bi-calendar-plus me-1"></i> Fan Membership
                                     </a>
                                 </div>
                             </div>
@@ -281,7 +281,7 @@ $latestHeadlines = array_slice($headlines, 0, 10);
                             View Profile
                         </a>
                         <a href="booking.php?id=<?= $celebrity['id'] ?>" class="btn btn-sm btn-primary-custom">
-                            <i class="bi bi-calendar-plus me-1"></i>Book Now
+                            Join Fan Club
                         </a>
                     </div>
                 </div>

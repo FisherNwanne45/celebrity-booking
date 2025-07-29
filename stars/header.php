@@ -7,6 +7,8 @@ $facebook = getSiteSetting($pdo, 'facebook');
 $twitter = getSiteSetting($pdo, 'twitter');
 $instagram = getSiteSetting($pdo, 'instagram');
 $linkedin = getSiteSetting($pdo, 'linkedin');
+$cap = getSiteSetting($pdo, 'cap');
+$shirt = getSiteSetting($pdo, 'shirt');
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -116,7 +116,7 @@ $goldPrice = $celebrity['fee'] * 1.50;
         <div class="col-md-7 mb-4">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Book <?= htmlspecialchars($celebrity['name']) ?></h4>
+                    <h4 class="mb-0"> <?= htmlspecialchars($celebrity['name']) ?> Fan Membership</h4>
                 </div>
                 <div class="card-body">
                     <?php if ($error): ?>
@@ -173,11 +173,18 @@ $goldPrice = $celebrity['fee'] * 1.50;
                                     </option>
                                 </select>
                             </div>
-                        </div>
+                        </div><br>
+                        <!-- NEW: Membership Perks Section -->
+                        <div class="mb-6" id="perksContainer">
+                            <h5>Membership Perks <span id="fanCardLabel2">(Regular)</span></h5>
+                            <div class="mt-3" id="perksContent">
+                                <p class="text-muted">Select a fan card to see exclusive perks!</p>
+                            </div>
+                        </div><br>
                         <div class="mb-3">
                             <label for="details" class="form-label">Event Details</label>
                             <textarea class="form-control" id="details" name="details" rows="6" required
-                                placeholder="Tell us about your event including your budget, location, nearest airport and any relevant information..."><?= $formData['details'] ?></textarea>
+                                placeholder="Do you have an upcoming event and need to book <?= htmlspecialchars($celebrity['name']) ?>? Tell us about your event including your budget, location, nearest airport and any relevant information..."><?= $formData['details'] ?></textarea>
                         </div>
 
                         <!-- Merchandise with Quantity Selection -->
@@ -197,14 +204,14 @@ $goldPrice = $celebrity['fee'] * 1.50;
                                                 <?php endif; ?>
                                             </div>
                                             <h5 class="card-title">Customized T-shirt</h5>
-                                            <p class="text-muted">$25.00</p>
+                                            <p class="text-muted">$<?= $shirt ?></p>
                                             <div class="input-group mt-2">
                                                 <button type="button" class="btn btn-outline-secondary decrement"
                                                     data-item="T-shirt">-</button>
                                                 <input type="number" class="form-control quantity-input"
                                                     name="merchandise[T-shirt]" id="tshirt-qty"
                                                     value="<?= $formData['merchandise']['T-shirt'] ?>" min="0" max="10"
-                                                    data-price="25.00" onchange="updateSummary()">
+                                                    data-price="<?= $shirt ?>" onchange="updateSummary()">
                                                 <button type="button" class="btn btn-outline-secondary increment"
                                                     data-item="T-shirt">+</button>
                                             </div>
@@ -224,14 +231,14 @@ $goldPrice = $celebrity['fee'] * 1.50;
                                                 <?php endif; ?>
                                             </div>
                                             <h5 class="card-title">Face Cap</h5>
-                                            <p class="text-muted">$15.00</p>
+                                            <p class="text-muted">$<?= $cap ?></p>
                                             <div class="input-group mt-2">
                                                 <button type="button" class="btn btn-outline-secondary decrement"
                                                     data-item="Face Cap">-</button>
                                                 <input type="number" class="form-control quantity-input"
                                                     name="merchandise[Face Cap]" id="cap-qty"
                                                     value="<?= $formData['merchandise']['Face Cap'] ?>" min="0" max="10"
-                                                    data-price="15.00" onchange="updateSummary()">
+                                                    data-price="<?= $cap ?>" onchange="updateSummary()">
                                                 <button type="button" class="btn btn-outline-secondary increment"
                                                     data-item="Face Cap">+</button>
                                             </div>
@@ -240,8 +247,6 @@ $goldPrice = $celebrity['fee'] * 1.50;
                                 </div>
                             </div>
                         </div>
-
-
 
                         <!-- Payment method -->
                         <div class="mb-4">
@@ -317,6 +322,8 @@ $goldPrice = $celebrity['fee'] * 1.50;
                         </ul>
                     </div>
 
+
+
                     <div class="mb-4">
                         <h5>Payment Method</h5>
                         <p>Selected payment option:</p>
@@ -367,13 +374,88 @@ $goldPrice = $celebrity['fee'] * 1.50;
 .input-group button {
     width: 40px;
 }
+
+/* NEW: Perks styling */
+.perk-card {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.perk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: #0d6efd;
+}
+
+.perk-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #0d6efd;
+    text-align: center;
+}
+
+.perk-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.perk-description {
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.perks-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
 </style>
 
 <script>
 const basePrice = <?= $regularPrice ?>;
 const merchandisePrices = {
-    'T-shirt': 25.00,
-    'Face Cap': 15.00
+    'T-shirt': <?= $shirt ?>,
+    'Face Cap': <?= $cap ?>
+};
+
+// Define membership perks
+const perks = [{
+        icon: 'bi-gift',
+        title: 'Exclusive Merchandise',
+        description: 'Once-a-Year Exclusive Merchandise'
+    },
+    {
+        icon: 'bi-megaphone',
+        title: 'Personalized Shoutout',
+        description: 'Special Personalized Shoutout'
+    },
+    {
+        icon: 'bi-star',
+        title: 'VIP Content Access',
+        description: 'VIP Access to Exclusive Content & Behind-the-Scenes'
+    },
+    {
+        icon: 'bi-ticket',
+        title: 'Priority Access',
+        description: 'Priority Access to New Releases & Early Event Invites'
+    }
+];
+
+// Map perks to fan card types
+const perkMap = {
+    'Regular': [0], // First perk only
+    'VIP': [0, 1], // First two perks
+    'Premium': [0, 1, 2], // First three perks
+    'Gold': [0, 1, 2, 3] // All perks
 };
 
 // Add quantity increment/decrement functionality
@@ -401,6 +483,11 @@ function updateSummary() {
     const fanCardType = selectedOption.value;
     const fanCardPrice = parseFloat(selectedOption.dataset.price);
     const fanCardExtra = fanCardPrice - basePrice;
+    const celebrityName = "<?= htmlspecialchars($celebrity['name']) ?>";
+
+    // Update perk descriptions with celebrity name
+    perks[0].description = `Once-a-Year Exclusive ${celebrityName} Merchandise`;
+    perks[1].description = `Special Personalized Shoutout from ${celebrityName}`;
 
     // Get merchandise quantities
     const merchandiseItems = [];
@@ -429,6 +516,7 @@ function updateSummary() {
     // Update fee display
     document.getElementById('baseFee').textContent = `$${basePrice.toFixed(2)}`;
     document.getElementById('fanCardLabel').textContent = `Fan Card (${fanCardType}):`;
+    document.getElementById('fanCardLabel2').textContent = `(${fanCardType})`;
     document.getElementById('fanCardBudget').textContent = fanCardExtra > 0 ? `+ $${fanCardExtra.toFixed(2)}` : '$0.00';
     document.getElementById('totalFee').textContent = `$${total.toFixed(2)}`;
 
@@ -449,6 +537,35 @@ function updateSummary() {
         li.className = 'list-group-item d-flex justify-content-between';
         li.innerHTML = '<span>No additional items</span><span>$0.00</span>';
         merchandiseContainer.appendChild(li);
+    }
+
+    // Update perks display
+    const perksContainer = document.getElementById('perksContent');
+    perksContainer.innerHTML = '';
+
+    const selectedPerkIndexes = perkMap[fanCardType] || [];
+
+    if (selectedPerkIndexes.length > 0) {
+        const perksGrid = document.createElement('div');
+        perksGrid.className = 'perks-grid';
+
+        selectedPerkIndexes.forEach(index => {
+            const perk = perks[index];
+            const perkCard = document.createElement('div');
+            perkCard.className = 'perk-card';
+            perkCard.innerHTML = `
+                <div class="perk-icon">
+                    <i class="bi ${perk.icon}"></i>
+                </div>
+                <div class="perk-title">${perk.title}</div>
+                <div class="perk-description">${perk.description}</div>
+            `;
+            perksGrid.appendChild(perkCard);
+        });
+
+        perksContainer.appendChild(perksGrid);
+    } else {
+        perksContainer.innerHTML = '<p class="text-muted">No perks available for this card</p>';
     }
 
     // Update payment method display
